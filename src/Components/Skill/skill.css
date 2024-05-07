@@ -1,0 +1,50 @@
+.skillContainer{
+    display: flex;
+    width:80%;
+    background-color: white;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:16px;
+    border-radius: 15px;
+    border:2px solid white;
+    
+
+}
+.skillCard{
+    display:inline-block;
+}
+.skillImage{
+    width:100%;
+
+}
+.skillSkill{
+    display: block;
+    width:100%;
+    text-transform: uppercase;
+    font-size:2em;
+    text-decoration: underline;
+    background-color: red;
+    margin-top: 0px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    
+
+}
+.skillExperience{
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+    font-size:1.5em;
+    margin-bottom: 0px;
+    background-color: red;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+.skillCertification{
+    
+}

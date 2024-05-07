@@ -1,0 +1,128 @@
+.homeContainer{
+    
+display:block;
+background-color: black;
+padding-bottom: 10px;
+}
+.homeTitle{
+    margin-top: 1em;
+    color:red;
+    font-size:  1.2em;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+
+}
+.homeListContainer{
+    display: block;
+    width:90%;
+    height:100;
+    background-color: red;
+    border:2px solid white;
+    margin-left: auto;
+    margin-right: auto;
+    padding:10px;
+    border-radius: 15px;
+
+}
+.homeList{
+    margin-top: 0px;
+    text-align: center;
+    font-size:1em;
+    list-style:none;
+    padding:10px;
+    
+
+}
+.homeListItem{
+    display:block;
+    width:100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    
+
+
+}
+.homeListItemLink{
+    text-decoration: none;
+    font-size: 1.5em;
+    color:white;
+    text-align:center;
+    display:block;
+    width:100%;
+    text-align: center;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    
+}
+
+.homeListItemLink:hover{
+    color:black;
+    text-transform: lowercase;
+}
+.homeAboutContainer{
+    display: block;
+    margin-top:1em;
+    background-color: red;
+    width: 70%;
+    margin-left:auto;
+    margin-right: auto;
+    border-radius: 10px;
+    padding-top: 0px;
+    border: 2px solid white;
+
+}
+.homeRoleContainer{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size:.8em;
+
+}
+.homeRole{
+
+}
+.homeImgContainer{
+    background-color: white;
+    display:block;
+    width:100%;
+
+}
+.homeImg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+    height:300px
+
+}
+.homeNameContainer{
+    text-align: center;
+    text-transform: uppercase;
+    font-size:.8em;
+
+}
+.homeName{
+
+}
+@media(min-width:375px){
+    .homeTitle{
+        font-size:1.5em;
+
+    }
+
+}
+@media(min-width:430px){
+    .homeImg{
+        height:auto
+
+    }
+
+}

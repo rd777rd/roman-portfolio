@@ -1,0 +1,64 @@
+.projectsPage
+{
+    display: block;
+    width:100%;
+}
+.projects{
+    display:block;
+    width: 100%;
+
+}
+.projectsTitle{
+    color:white;
+    margin-top: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.project{
+    
+
+}
+.projectDisplay{
+
+}
+.projectDisplayContainer{
+    
+}
+.breadcrum{
+    
+}
+
+@media(min-width:768px){
+    .projects{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .projectContainer{
+        display: block;
+        width:45%;
+        margin:auto collapse;
+
+    }
+    .projectDescription{
+        height:200px;
+        line-height: 1.7;
+    }
+}
+@media (min-width:900px){
+    .projectDescription{
+        line-height: 2;
+    }
+
+}
+
+@media(min-width:1240px){
+    .projectDescription{
+        line-height:2.4
+        
+
+    }
+
+}
+

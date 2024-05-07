@@ -1,0 +1,200 @@
+.aboutPage{
+display: block;
+width: 100%;
+padding-bottom: 16px;
+}
+.aboutContainer{
+    display: block;
+    width:100%;
+    
+
+
+}
+.aboutSection{
+    display:block;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.aboutTitle{
+    text-transform: uppercase;
+    display:block;
+    height:50px;
+    line-height:50px;
+    text-align: center;
+    color:red;
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0;;
+
+}
+.aboutTextContainer{
+    display: block;
+    background-color: white;
+    width:90%;
+    padding:16px;
+    border-radius: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 4px;
+    border:2px solid red;
+}
+.aboutText{
+    margin-top: 0;
+    line-height: 2.5em;
+    padding:16px;
+    background-color: red;
+    border-radius: 16px;
+    color:white;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    border:2px solid black;
+
+}
+.aboutButtonsContainer{
+    display:flex;
+    justify-content: space-evenly;
+    width:100%;
+
+}
+.aboutButton{
+    display: inline-block;
+    width:35%;
+    padding: 16px;
+    background-color: red;
+    color:white;
+    border-radius: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:2px solid black;
+
+}
+.aboutButton:hover{
+    color:red;
+    background-color: black;
+}
+.aboutButton .vs{
+
+}
+.aboutButton .vp{
+
+}
+.contactSection{
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    
+
+}
+.contactTitle{
+    display:block;
+    height:40px;
+    line-height:30px;
+    text-align: center;
+    color:red;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+.contactInfoContainer{
+    display: block;
+    width:90%;
+    line-height: 2.5em;
+    padding:16px;
+    background-color: white;
+    border-radius: 16px;
+    color:white;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 56px;
+    border:2px solid red;
+    
+
+}
+.phoneSection{
+    display: block;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+    padding: 16px;
+    border-radius: 16px;
+    margin-top: 0;
+    border: 2px solid black;
+   
+
+}
+.phoneTitle{
+    text-wrap: nowrap;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+
+
+}
+.phoneText{
+    font-size: 1.2em;
+    margin-top: 0;
+
+
+}
+.seperate{
+    display: block;
+    height: 0px;
+    width:90%;
+    border: 5px solid black;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+.emailTitle{
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    
+  
+
+}
+.emailText{
+    font-size: 1;
+    text-align: center;
+    margin-right: auto;
+    margin-top: 0;
+ 
+}
+.emailLink{
+    text-decoration: none;
+    display: inline-block;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px;
+    border-radius: 16px;
+    background-color:white;
+    color:red;
+    margin-top: 0;
+    border:2px solid black
+}
+.emailLink:hover{
+    background-color: black;
+    border:2px solid white;
+}
+@media(max-width:375px){
+    .phoneTitle{
+        text-wrap: wrap;
+    }
+
+}

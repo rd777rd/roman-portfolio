@@ -1,0 +1,171 @@
+.projectContainer{
+    display:flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+    margin-bottom: 20px;
+    border-radius:10px;
+    border: 2px solid white;
+    
+
+}
+.projectCard{
+    display:inline-block;
+    
+
+}
+.projectImage{
+    display: block;
+    width: 100%;
+    position: relative;
+    top: -40px;
+    bottom:0px;
+}
+.projectName{
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    width:100%;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 2em;
+    padding-top:2px;
+    padding-bottom:2px ;
+    position: relative;
+    top: -15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color:black;
+    text-decoration:underline solid;
+    
+}
+.projectDescription{
+    display: inline-block;
+    width: 90%;
+    color:black;
+    font-size: 1.3em; 
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    position: relative;
+    top: -40px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    line-height: 1.75;
+    border:2px solid black;
+  
+
+}
+.descriptionSpan{
+    text-decoration:underline dotted;
+}
+.projectButtons{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+top: -40px;
+    
+
+}
+.projectButton{
+    text-align: center;
+    text-decoration: none;
+    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    padding:30px;
+    border-radius: 60px;
+    width:100px;
+    color:white;
+    align-items: center;
+    font-size: 1.5em;
+    border:2px solid white;
+
+
+}
+.projectButton:hover{
+    color:red;
+    background-color: white;
+    border:2px solid black;
+}
+.projectButtons .vs{
+
+
+}
+.projectButtons .vd{
+
+}
+.projectTechStack{
+    display:flex;
+    justify-content: center;
+    color:black;
+    height:50px;
+    text-transform: uppercase;
+    background-color: white;
+    line-height: 50px;
+    font-size: 14px;
+    position: relative;
+top: -40px;
+font-weight: bold;
+text-wrap: wrap;
+
+    
+}
+@media(min-width:768px){
+    .projects{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .projectContainer{
+        display: block;
+        width:45%;
+        margin:auto collapse;
+
+    }
+    .projectDescription{
+        height:200px;
+        line-height: 1.7;
+    }
+}
+@media(max-width:366px){
+    .projectContainer{
+        display: block;
+        width: 90%;
+    }
+    .projectName{
+        font-size: 2em;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .projectImage{
+        width: full-width;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .projectButton{
+        padding: 10px;
+        font-size: 1.5em;
+    }
+    .projectTechStack{
+    }
+
+}
+@media(max-width:470px){
+    .projectTechStack{
+        display: block;
+        font-size: 1em;
+        height:auto;
+        text-align: center;
+        
+    }
+}
+    
+    
