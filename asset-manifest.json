@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/github.io/roman-portfolio/static/css/main.b468b37b.css",
-    "main.js": "/github.io/roman-portfolio/static/js/main.fe0a6f5a.js",
-    "static/media/homeimg.png": "/github.io/roman-portfolio/static/media/homeimg.8f237e9399354be1b679.png",
-    "static/media/construction.png": "/github.io/roman-portfolio/static/media/construction.030b276aa670d7f94ce0.png",
-    "static/media/romsites.png": "/github.io/roman-portfolio/static/media/romsites.6f69818fcd603b562ed8.png",
-    "static/media/clothing-store.png": "/github.io/roman-portfolio/static/media/clothing-store.251fbfb5c4cd841465ae.png",
-    "static/media/p1.jpg": "/github.io/roman-portfolio/static/media/p1.efdb5a527dadf927675e.jpg",
-    "static/media/s4.png": "/github.io/roman-portfolio/static/media/s4.f12dc2b422a2d6a20083.png",
-    "static/media/s3.png": "/github.io/roman-portfolio/static/media/s3.f652cf404b0890dcb113.png",
-    "static/media/s1.png": "/github.io/roman-portfolio/static/media/s1.46e4c5221c11e768f408.png",
-    "static/media/s2.png": "/github.io/roman-portfolio/static/media/s2.14eda2f6487161742b67.png",
-    "index.html": "/github.io/roman-portfolio/index.html",
-    "main.b468b37b.css.map": "/github.io/roman-portfolio/static/css/main.b468b37b.css.map",
-    "main.fe0a6f5a.js.map": "/github.io/roman-portfolio/static/js/main.fe0a6f5a.js.map"
+    "main.css": "/github.io/static/css/main.b468b37b.css",
+    "main.js": "/github.io/static/js/main.2091edd3.js",
+    "static/media/homeimg.png": "/github.io/static/media/homeimg.8f237e9399354be1b679.png",
+    "static/media/construction.png": "/github.io/static/media/construction.030b276aa670d7f94ce0.png",
+    "static/media/romsites.png": "/github.io/static/media/romsites.6f69818fcd603b562ed8.png",
+    "static/media/clothing-store.png": "/github.io/static/media/clothing-store.251fbfb5c4cd841465ae.png",
+    "static/media/p1.jpg": "/github.io/static/media/p1.efdb5a527dadf927675e.jpg",
+    "static/media/s4.png": "/github.io/static/media/s4.f12dc2b422a2d6a20083.png",
+    "static/media/s3.png": "/github.io/static/media/s3.f652cf404b0890dcb113.png",
+    "static/media/s1.png": "/github.io/static/media/s1.46e4c5221c11e768f408.png",
+    "static/media/s2.png": "/github.io/static/media/s2.14eda2f6487161742b67.png",
+    "index.html": "/github.io/index.html",
+    "main.b468b37b.css.map": "/github.io/static/css/main.b468b37b.css.map",
+    "main.2091edd3.js.map": "/github.io/static/js/main.2091edd3.js.map"
   },
   "entrypoints": [
     "static/css/main.b468b37b.css",
-    "static/js/main.fe0a6f5a.js"
+    "static/js/main.2091edd3.js"
   ]
 }
