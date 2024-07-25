@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.46af6c5e.css",
+    "main.js": "/static/js/main.65e7af71.js",
+    "static/js/453.36c857d8.chunk.js": "/static/js/453.36c857d8.chunk.js",
+    "static/media/homeimg.png": "/static/media/homeimg.8f237e9399354be1b679.png",
+    "static/media/construction.png": "/static/media/construction.030b276aa670d7f94ce0.png",
+    "static/media/romsites.png": "/static/media/romsites.6f69818fcd603b562ed8.png",
+    "static/media/frontend-cert.png": "/static/media/frontend-cert.fcebcfe955d5bc698857.png",
+    "static/media/clothing-store.png": "/static/media/clothing-store.251fbfb5c4cd841465ae.png",
+    "static/media/reactstore.png": "/static/media/reactstore.f740ece891ad932c6c67.png",
+    "static/media/s4.png": "/static/media/s4.f12dc2b422a2d6a20083.png",
+    "static/media/s3.png": "/static/media/s3.f652cf404b0890dcb113.png",
+    "static/media/s1.png": "/static/media/s1.46e4c5221c11e768f408.png",
+    "static/media/s2.png": "/static/media/s2.14eda2f6487161742b67.png",
+    "index.html": "/index.html",
+    "main.46af6c5e.css.map": "/static/css/main.46af6c5e.css.map",
+    "main.65e7af71.js.map": "/static/js/main.65e7af71.js.map",
+    "453.36c857d8.chunk.js.map": "/static/js/453.36c857d8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46af6c5e.css",
+    "static/js/main.65e7af71.js"
+  ]
+}
