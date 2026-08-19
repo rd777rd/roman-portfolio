@@ -137,6 +137,13 @@ Let's discuss setting up a kickoff meeting for this contract!`;
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
             Configure a project below to get a live, itemized cost and timeline estimate for custom development work.
           </p>
+          <p className="text-zinc-500 text-xs font-mono">
+            For freelance &amp; contract engagement inquiries — see{' '}
+            <a href="#projects" className="text-blue-400 hover:text-blue-300 underline underline-offset-2">
+              Case Studies
+            </a>{' '}
+            above for full-time work samples.
+          </p>
         </div>
 
         {/* Core Multi-col Grid */}
@@ -253,7 +260,7 @@ Let's discuss setting up a kickoff meeting for this contract!`;
               <div>
                 <span className="font-display font-light text-xl tracking-wide uppercase">ESTIMATE LEDGER</span>
                 <p className="text-[10px] font-mono text-zinc-400 mt-1">
-                  SYSTEM ESTIMATE FOR COGENT DELIVERIES
+                  LIVE ESTIMATE — CONTRACT &amp; FREELANCE WORK
                 </p>
               </div>
               <span className="text-[10px] font-mono text-zinc-400 px-2 py-1 bg-zinc-900 border border-zinc-800 rounded">

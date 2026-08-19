@@ -68,12 +68,14 @@ export default function About({ onOpenResume }: AboutProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-6 bg-zinc-950/60 rounded-2xl border border-zinc-800/80 hover:border-zinc-700/80 transition-all duration-300 relative group overflow-hidden"
+                className="p-6 bg-zinc-950/60 rounded-2xl border border-zinc-800/80 hover:border-amber-800/50 transition-all duration-300 relative group overflow-hidden"
               >
-                {/* Micro corner highlight */}
-                <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-blue-500/10 to-transparent pointer-events-none group-hover:from-blue-500/25 transition-all duration-300" />
+                {/* Micro corner highlight — amber marks "proof" content (stats,
+                    credentials) as a distinct visual register from the blue
+                    used for interactive/build content elsewhere on the site */}
+                <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-amber-500/10 to-transparent pointer-events-none group-hover:from-amber-500/25 transition-all duration-300" />
 
-                <div className="font-display font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+                <div className="font-display font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
                   {stat.value}
                 </div>
                 <div className="mt-2 font-heading font-bold text-sm text-zinc-200">
@@ -86,8 +88,8 @@ export default function About({ onOpenResume }: AboutProps) {
             ))}
 
             {/* Quick overview alert boxes */}
-            <div className="sm:col-span-2 p-6 bg-gradient-to-r from-blue-950/25 to-indigo-950/25 rounded-2xl border border-blue-900/30 flex flex-col sm:flex-row items-center gap-4">
-              <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20 text-blue-400">
+            <div className="sm:col-span-2 p-6 bg-gradient-to-r from-amber-950/20 to-orange-950/20 rounded-2xl border border-amber-900/30 flex flex-col sm:flex-row items-center gap-4">
+              <div className="p-3 bg-amber-500/10 rounded-xl border border-amber-500/20 text-amber-400">
                 <Award size={24} />
               </div>
               <div className="flex-1 text-center sm:text-left space-y-1">

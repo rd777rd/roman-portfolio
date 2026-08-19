@@ -1,11 +1,18 @@
 import React from 'react';
-import { Award, CheckCircle, ExternalLink } from 'lucide-react';
+import { Award, CheckCircle, ExternalLink, Hourglass } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../data';
 
 export default function Certifications() {
+  // Credentials that are actually issued get the full showcase grid; anything
+  // still pending issuance is real and worth mentioning, but doesn't belong
+  // at equal visual weight next to four verified ones — that reads as
+  // unfinished rather than in-progress. It gets a small footnote instead.
+  const issuedCerts = CERTIFICATIONS_DATA.filter((c) => c.link !== '#');
+  const pendingCerts = CERTIFICATIONS_DATA.filter((c) => c.link === '#');
+
   return (
     <section id="certifications" className="py-24 relative bg-zinc-950 border-t border-zinc-900">
-      <div className="absolute top-1/4 left-0 w-80 h-80 bg-blue-900/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-80 h-80 bg-amber-900/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         {/* Section Header */}
@@ -28,12 +35,12 @@ export default function Certifications() {
           </div>
         </div>
 
-        {/* Credentials Grid */}
+        {/* Credentials Grid — issued certifications only */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {CERTIFICATIONS_DATA.map((cert) => (
+          {issuedCerts.map((cert) => (
             <div
               key={cert.name}
-              className="p-6 bg-zinc-900/30 border border-zinc-800 rounded-2xl flex flex-col justify-between hover:border-zinc-700 hover:bg-zinc-900/50 transition-all duration-300 relative group overflow-hidden"
+              className="p-6 bg-zinc-900/30 border border-zinc-800 rounded-2xl flex flex-col justify-between hover:border-amber-800/50 hover:bg-zinc-900/50 transition-all duration-300 relative group overflow-hidden"
             >
               <div className="space-y-4">
                 {/* Visual head */}
@@ -42,13 +49,13 @@ export default function Certifications() {
                     <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">
                       ISSUER: {cert.issuer}
                     </span>
-                    <h3 className="font-heading font-black text-lg text-zinc-100 group-hover:text-blue-400 transition-colors">
+                    <h3 className="font-heading font-black text-lg text-zinc-100 group-hover:text-amber-400 transition-colors">
                       {cert.name}
                     </h3>
                   </div>
-                  
+
                   {/* Digital Badge icon */}
-                  <div className="p-3 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-xl border border-blue-500/20 text-blue-400 flex items-center justify-center flex-shrink-0">
+                  <div className="p-3 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-xl border border-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0">
                     <Award size={20} className="group-hover:rotate-12 transition-transform duration-300" />
                   </div>
                 </div>
@@ -73,25 +80,31 @@ export default function Certifications() {
                   <span className="text-zinc-400">{cert.verificationId || 'SYSTEM_INTERNAL'}</span>
                 </div>
 
-                {cert.link === '#' ? (
-                  <span className="px-4 py-2 bg-zinc-900/40 text-zinc-400 font-mono text-xs border border-zinc-800/40 rounded-lg flex items-center justify-center gap-1.5 cursor-not-allowed select-none">
-                    Pending Verification
-                  </span>
-                ) : (
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-zinc-950 hover:bg-zinc-900 text-zinc-300 hover:text-zinc-100 font-mono text-xs border border-zinc-800 rounded-lg flex items-center justify-center gap-1.5 transition-all"
-                    aria-label={`Verify my ${cert.name} credential`}
-                  >
-                    Verify Share <ExternalLink size={12} />
-                  </a>
-                )}
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-zinc-950 hover:bg-zinc-900 text-zinc-300 hover:text-zinc-100 font-mono text-xs border border-zinc-800 rounded-lg flex items-center justify-center gap-1.5 transition-all"
+                  aria-label={`Verify my ${cert.name} credential`}
+                >
+                  Verify Share <ExternalLink size={12} />
+                </a>
               </div>
             </div>
           ))}
         </div>
+
+        {/* In-progress credentials — deliberately a small footnote, not an
+            equal-weight grid card, so an incomplete credential doesn't read
+            as an unfinished one. */}
+        {pendingCerts.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-500">
+            <Hourglass size={13} className="text-zinc-600 flex-shrink-0" />
+            <span>
+              In progress: {pendingCerts.map((c) => c.name).join(', ')} — pending issuance.
+            </span>
+          </div>
+        )}
 
       </div>
     </section>

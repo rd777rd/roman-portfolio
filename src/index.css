@@ -8,12 +8,31 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Every section is a scroll-anchor target for the fixed navbar's in-page
+     links; without this, the navbar (h-12 plus vertical padding, ~72-88px)
+     overlaps the top of whatever section a visitor jumps to. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
   body {
     background-color: #09090b; /* Zinc 950 */
     color: #f4f4f5; /* Zinc 100 */
     font-family: var(--font-sans);
     line-height: 1.6;
     overflow-x: hidden;
+  }
+
+  /* A deliberate, on-brand text-selection color instead of the browser
+     default — a small detail, but one that's easy to notice is missing on
+     a portfolio built to demonstrate attention to craft. */
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.35); /* blue-500 @ 35% */
+    color: #f4f4f5;
   }
 
   /* Custom subtle scrollbars */
