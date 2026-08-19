@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Linkedin, Send, Sparkles, AlertCircle, Copy, Check } from 'lucide-react';
 import { PERSONAL_INFO } from '../data';
 
-interface ContactProps {
-  message: string;
-  onMessageChange: (val: string) => void;
-}
-
-export default function Contact({ message, onMessageChange }: ContactProps) {
+export default function Contact() {
+  const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', honey: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [copied, setCopied] = useState(false);
@@ -31,7 +27,7 @@ export default function Contact({ message, onMessageChange }: ContactProps) {
     if (formData.honey) {
       setStatus('success');
       setFormData({ name: '', email: '', honey: '' });
-      onMessageChange('');
+      setMessage('');
       return;
     }
 
@@ -56,7 +52,7 @@ export default function Contact({ message, onMessageChange }: ContactProps) {
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', honey: '' });
-        onMessageChange('');
+        setMessage('');
       } else {
         setStatus('error');
       }
@@ -184,7 +180,7 @@ export default function Contact({ message, onMessageChange }: ContactProps) {
                   id="contact-message"
                   rows={4}
                   value={message}
-                  onChange={(e) => onMessageChange(e.target.value)}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-3 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-xs font-mono text-zinc-300 focus:outline-none focus:border-blue-500 max-h-40"
                   placeholder="Draft project parameters, timeline, and stack requirements here..."
                 />

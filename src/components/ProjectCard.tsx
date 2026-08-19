@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, ShieldAlert, Layers, Loader2 } from 'lucide-react';
+import { ExternalLink, Github, Lock, ShieldAlert, Layers, Loader2 } from 'lucide-react';
 import { Project } from '../types';
 import { useDemoWarmup } from '../hooks/useDemoWarmup';
 
@@ -140,7 +140,7 @@ export default function ProjectCard({ project, index, isExpanded, onToggle }: Pr
             <DemoStatusBadge status={demoStatus} />
           )}
 
-          {project.github && (
+          {project.github ? (
             <a
               href={project.github}
               target="_blank"
@@ -150,6 +150,18 @@ export default function ProjectCard({ project, index, isExpanded, onToggle }: Pr
             >
               <Github size={15} />
             </a>
+          ) : (
+            // No public repo for this project (private source, or a no-code/
+            // managed-platform build with nothing to browse) — a lock icon
+            // makes that a deliberate design statement instead of a link
+            // that would otherwise just be silently missing.
+            <span
+              className="p-2 text-zinc-600 bg-zinc-900/40 rounded-lg border border-zinc-800/50 cursor-default select-none"
+              title="Source is private"
+              aria-label={`Source code for ${project.title} is private`}
+            >
+              <Lock size={15} />
+            </span>
           )}
 
           {project.inDevelopment ? (

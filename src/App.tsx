@@ -14,7 +14,7 @@ import { Terminal } from 'lucide-react';
 // Lazy-loaded: below-the-fold and not needed for first paint, so keeping them
 // out of the initial bundle reduces unused JS and main-thread work on load.
 const Projects = lazy(() => import('./components/Projects'));
-const HireMeCalculator = lazy(() => import('./components/HireMeCalculator'));
+const EngineeringDeepDive = lazy(() => import('./components/EngineeringDeepDive'));
 const Skills = lazy(() => import('./components/Skills'));
 const Certifications = lazy(() => import('./components/Certifications'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -34,7 +34,6 @@ function SectionFallback() {
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [estimateText, setEstimateText] = useState('');
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isHireMeOpen, setIsHireMeOpen] = useState(false);
   // Track whether each modal has ever been opened, so we only mount (and
@@ -80,9 +79,12 @@ export default function App() {
             <Projects />
           </Suspense>
 
-          {/* Core interactive billing sandbox simulator */}
+          {/* Flagship engineering case study — real code + a real passing
+              concurrency test, not a claim. Replaces the old pricing
+              calculator, which (even well-framed) put a freelance-rate tool
+              at equal weight with the rest of the page. */}
           <Suspense fallback={<SectionFallback />}>
-            <HireMeCalculator onApplyEstimate={(text) => setEstimateText(text)} />
+            <EngineeringDeepDive />
           </Suspense>
 
           {/* Tech skills segment */}
@@ -97,7 +99,7 @@ export default function App() {
 
           {/* External contact points */}
           <Suspense fallback={<SectionFallback />}>
-            <Contact message={estimateText} onMessageChange={(text) => setEstimateText(text)} />
+            <Contact />
           </Suspense>
         </main>
 
@@ -121,7 +123,7 @@ export default function App() {
               <span>/</span>
               <a href="#projects" className="hover:text-zinc-100 transition-colors">Systems</a>
               <span>/</span>
-              <a href="#sandbox" className="hover:text-zinc-100 transition-colors">Calculator</a>
+              <a href="#deepdive" className="hover:text-zinc-100 transition-colors">Deep Dive</a>
               <span>/</span>
               <a href="#contact" className="hover:text-zinc-100 transition-colors">Contact</a>
             </div>

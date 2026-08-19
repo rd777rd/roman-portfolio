@@ -1,14 +1,18 @@
 import React from 'react';
-import { Award, CheckCircle, ExternalLink, Hourglass } from 'lucide-react';
+import { Award, CheckCircle, ExternalLink, FileText, Hourglass } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../data';
 
 export default function Certifications() {
-  // Credentials that are actually issued get the full showcase grid; anything
-  // still pending issuance is real and worth mentioning, but doesn't belong
-  // at equal visual weight next to four verified ones — that reads as
-  // unfinished rather than in-progress. It gets a small footnote instead.
-  const issuedCerts = CERTIFICATIONS_DATA.filter((c) => c.link !== '#');
-  const pendingCerts = CERTIFICATIONS_DATA.filter((c) => c.link === '#');
+  // A credential counts as "proven" if it has either an official issuer
+  // verification link OR a self-hosted certificate file — some issuers
+  // (Coursera, notably) lock the shareable /share/ verify link behind a
+  // separate certificate purchase even after the coursework is fully
+  // completed, so an uploaded certificate is treated as equally valid proof
+  // rather than as a lesser, "pending" state. Anything with neither is
+  // genuinely still in progress and gets a small footnote instead of equal
+  // grid weight next to proven credentials.
+  const provenCerts = CERTIFICATIONS_DATA.filter((c) => c.link !== '#' || c.certificateFile);
+  const pendingCerts = CERTIFICATIONS_DATA.filter((c) => c.link === '#' && !c.certificateFile);
 
   return (
     <section id="certifications" className="py-24 relative bg-zinc-950 border-t border-zinc-900">
@@ -35,9 +39,9 @@ export default function Certifications() {
           </div>
         </div>
 
-        {/* Credentials Grid — issued certifications only */}
+        {/* Credentials Grid — proven certifications only */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {issuedCerts.map((cert) => (
+          {provenCerts.map((cert) => (
             <div
               key={cert.name}
               className="p-6 bg-zinc-900/30 border border-zinc-800 rounded-2xl flex flex-col justify-between hover:border-amber-800/50 hover:bg-zinc-900/50 transition-all duration-300 relative group overflow-hidden"
@@ -76,19 +80,39 @@ export default function Certifications() {
               {/* ID info and verification button */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-5 mt-5 border-t border-zinc-900/80">
                 <div className="font-mono text-[10px] text-zinc-400 space-y-0.5">
-                  <span className="block uppercase text-zinc-400">Credential Hash</span>
-                  <span className="text-zinc-400">{cert.verificationId || 'SYSTEM_INTERNAL'}</span>
+                  <span className="block uppercase text-zinc-400">
+                    {cert.link !== '#' ? 'Credential Hash' : 'Verification'}
+                  </span>
+                  <span className="text-zinc-400">
+                    {cert.link !== '#' ? (cert.verificationId || 'SYSTEM_INTERNAL') : 'Self-hosted certificate'}
+                  </span>
                 </div>
 
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-zinc-950 hover:bg-zinc-900 text-zinc-300 hover:text-zinc-100 font-mono text-xs border border-zinc-800 rounded-lg flex items-center justify-center gap-1.5 transition-all"
-                  aria-label={`Verify my ${cert.name} credential`}
-                >
-                  Verify Share <ExternalLink size={12} />
-                </a>
+                {cert.link !== '#' ? (
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-zinc-950 hover:bg-zinc-900 text-zinc-300 hover:text-zinc-100 font-mono text-xs border border-zinc-800 rounded-lg flex items-center justify-center gap-1.5 transition-all"
+                    aria-label={`Verify my ${cert.name} credential`}
+                  >
+                    Verify Share <ExternalLink size={12} />
+                  </a>
+                ) : (
+                  // Issuer's own verify link is unavailable (e.g. locked
+                  // behind a certificate-purchase paywall even though the
+                  // coursework itself is complete) — proof lives on our own
+                  // site instead of depending on the issuer ever unlocking it.
+                  <a
+                    href={cert.certificateFile}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-zinc-950 hover:bg-zinc-900 text-zinc-300 hover:text-zinc-100 font-mono text-xs border border-zinc-800 rounded-lg flex items-center justify-center gap-1.5 transition-all"
+                    aria-label={`View my ${cert.name} certificate`}
+                  >
+                    View Certificate <FileText size={12} />
+                  </a>
+                )}
               </div>
             </div>
           ))}

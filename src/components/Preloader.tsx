@@ -34,7 +34,7 @@ const BOOT_LOGS = [
   { text: 'RESOLVING_DOM_NODES... COMPLETE [0.01s]', delay: 150 },
   { text: 'MOUNTING: React 19 Core App Engine...', delay: 290 },
   { text: 'ESTABLISHING_ROUTER: [Space Grotesk, Exo 2, Orbitron]', delay: 440 },
-  { text: 'PREPARING: System Scope Estimator...', delay: 590 },
+  { text: 'PREPARING: Engineering Deep Dive...', delay: 590 },
   { text: 'ALL SYSTEM MATRIX STATUS: ONLINE [OK]', delay: 720 }
 ];
 const EXIT_DELAY = 850;

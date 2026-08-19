@@ -229,10 +229,10 @@ export default function Hero({ onOpenResume }: HeroProps) {
               <FileText size={16} /> View &amp; Print Resume
             </button>
             <a
-              href="#sandbox"
+              href="#deepdive"
               className="px-6 py-3.5 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800/80 text-zinc-300 font-semibold rounded-xl text-sm transition-all duration-300 hover:text-zinc-100 flex items-center gap-2"
             >
-              <Terminal size={16} /> Scope Calculator
+              <Terminal size={16} /> Engineering Deep Dive
             </a>
           </motion.div>
 

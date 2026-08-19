@@ -26,7 +26,7 @@ export default function Navbar({ onOpenResume, onOpenHireMe }: NavbarProps) {
   const menuItems = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Scope Calculator', href: '#sandbox' },
+    { name: 'Deep Dive', href: '#deepdive' },
     { name: 'Skills', href: '#skills' },
     { name: 'Certifications', href: '#certifications' },
     { name: 'Contact', href: '#contact' },

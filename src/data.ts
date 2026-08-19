@@ -60,7 +60,8 @@ export const PROJECTS_DATA: Project[] = [
     longDescription: `ROMSITES is my own studio site, built to represent ROMSITES LLC — the entity I operate for freelance and contract web development work. It's positioned as a full-stack web design, development, SEO, and maintenance shop, and it doubles as a live showcase of the kind of work I actually deliver: the portfolio section links directly to two real client-style builds (SmallScapes and the Invoice Manager) with performance numbers and testimonials attached, rather than static mockups.`,
     technologies: ['React','Django','Render'],
     link: 'https://romsites.onrender.com',
-    github: 'https://github.com/rd777rd/romsites.git',
+    // No github field — this repo is private. See ProjectCard.tsx: a
+    // missing github link renders a lock icon instead of a dead 404 link.
     category: 'Agency'
   },
   {
@@ -79,8 +80,8 @@ export const PROJECTS_DATA: Project[] = [
     longDescription: `Shift Floor is a two-sided marketplace connecting Indianapolis-area warehouse and distribution facilities with certified workers for short-notice shift coverage. Facilities post a shift with pay, headcount, and required certification; workers browse and claim shifts ranked by their certs, distance, and pay, then get paid out through Stripe Connect once the shift closes. Under the hood, shift claiming uses row-level locking inside atomic transactions so a shift can never be overfilled by two workers claiming it at once — verified with a real multi-threaded concurrency test, not just a unit test that assumes serial execution. I built the whole stack by hand in Django rather than reaching for a low-code builder, specifically to work through problems most portfolio projects skip: concurrency correctness, server-side multi-tenant access control, and real Stripe/Cloudinary integrations, all running on free-tier hosting end to end.`,
     technologies: ['Django', 'PostgreSQL', 'Stripe', 'Render'],
     link: 'https://shiftfloor.onrender.com',
+    github: 'https://github.com/rd777rd/shiftfloor.git',
     category: 'Fullstack'
-
   },
   
 ];
