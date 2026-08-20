@@ -3,29 +3,9 @@ import { motion } from 'motion/react';
 import { Github, GitCommitHorizontal, FolderGit2, ArrowUpRight } from 'lucide-react';
 import { useGithubActivity } from '../hooks/useGithubActivity';
 import { PERSONAL_INFO } from '../data';
+import { timeAgo } from '../lib/timeAgo';
 
 const GITHUB_USERNAME = 'rd777rd';
-
-function timeAgo(iso: string): string {
-  const seconds = Math.max(0, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
-  const units: [number, string][] = [
-    [60, 'second'],
-    [60, 'minute'],
-    [24, 'hour'],
-    [7, 'day'],
-    [4.345, 'week'],
-    [12, 'month']
-  ];
-  let value = seconds;
-  let unit = 'second';
-  for (const [size, name] of units) {
-    if (value < size) break;
-    value = Math.floor(value / size);
-    unit = name;
-  }
-  const rounded = Math.max(1, Math.round(value));
-  return `${rounded} ${unit}${rounded === 1 ? '' : 's'} ago`;
-}
 
 export default function GithubActivity() {
   const { status, data } = useGithubActivity(GITHUB_USERNAME);

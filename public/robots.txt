@@ -1,5 +1,5 @@
 # https://www.robotstxt.org/
-# Roman Drake's professional portfolio & scope estimator
+# Roman Drake's professional portfolio
 
 User-agent: *
 Allow: /

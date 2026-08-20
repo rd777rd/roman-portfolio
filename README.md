@@ -1,7 +1,7 @@
 # Roman Drake — Portfolio
 
 Personal portfolio for Roman Drake, an AI-assisted full-stack web application developer.
-Showcases projects, skills, certifications, and an interactive "hire me" scope estimator.
+Showcases projects (with live per-repo GitHub stats), skills, certifications, and live GitHub engineering activity.
 
 **Live site:** https://romanportfolio1.netlify.app/
 

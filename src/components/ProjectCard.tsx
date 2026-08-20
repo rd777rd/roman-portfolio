@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, Lock, ShieldAlert, Layers, Loader2 } from 'lucide-react';
+import { ExternalLink, Github, Lock, ShieldAlert, Layers, Loader2, GitCommitHorizontal } from 'lucide-react';
 import { Project } from '../types';
 import { useDemoWarmup } from '../hooks/useDemoWarmup';
+import { useRepoStats } from '../hooks/useRepoStats';
+import { timeAgo } from '../lib/timeAgo';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,6 +16,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index, isExpanded, onToggle }: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const demoStatus = useDemoWarmup(project.link, cardRef);
+  const repoStats = useRepoStats(project.github, cardRef);
   const [showColdNotice, setShowColdNotice] = useState(false);
 
   useEffect(() => {
@@ -93,6 +96,31 @@ export default function ProjectCard({ project, index, isExpanded, onToggle }: Pr
                 <Layers size={13} className="text-blue-500 flex-shrink-0 mt-0.5" />
                 <span>{project.longDescription}</span>
               </div>
+
+              {repoStats.status === 'ready' && repoStats.data && (
+                <div
+                  className="flex items-center gap-1.5 flex-wrap font-mono text-[11px] text-zinc-500 pt-0.5"
+                  title="Live from the GitHub API — not a hand-maintained claim"
+                >
+                  <GitCommitHorizontal size={12} className="text-amber-500 flex-shrink-0" />
+                  <span>{repoStats.data.commitCount} commits</span>
+                  {repoStats.data.topLanguages.length > 0 && (
+                    <>
+                      <span className="text-zinc-700">·</span>
+                      <span>
+                        {repoStats.data.topLanguages.map((l, i) => (
+                          <React.Fragment key={l.name}>
+                            {i > 0 && ' / '}
+                            {l.name} {l.pct}%
+                          </React.Fragment>
+                        ))}
+                      </span>
+                    </>
+                  )}
+                  <span className="text-zinc-700">·</span>
+                  <span>updated {timeAgo(repoStats.data.pushedAt)}</span>
+                </div>
+              )}
 
               {project.id === 'invoiceapp' && (
                 <div className="p-2.5 bg-blue-500/5 rounded-lg border border-blue-500/10 text-[11px] font-mono mt-2 space-y-1 text-blue-300/90 leading-tight">
