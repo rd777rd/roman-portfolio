@@ -13,6 +13,7 @@ import { Terminal } from 'lucide-react';
 
 // Lazy-loaded: below-the-fold and not needed for first paint, so keeping them
 // out of the initial bundle reduces unused JS and main-thread work on load.
+const GithubActivity = lazy(() => import('./components/GithubActivity'));
 const Projects = lazy(() => import('./components/Projects'));
 const EngineeringDeepDive = lazy(() => import('./components/EngineeringDeepDive'));
 const Skills = lazy(() => import('./components/Skills'));
@@ -73,6 +74,14 @@ export default function App() {
 
           {/* About segment */}
           <About onOpenResume={openResume} />
+
+          {/* Live GitHub activity — real, API-sourced proof of ongoing
+              engineering work rather than a static claim. Renders nothing
+              if the API is unreachable and there's no cached data, so it
+              never shows broken or fabricated numbers. */}
+          <Suspense fallback={null}>
+            <GithubActivity />
+          </Suspense>
 
           {/* Portfolio Projects segment */}
           <Suspense fallback={<SectionFallback />}>
