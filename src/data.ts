@@ -147,11 +147,13 @@ export const CERTIFICATIONS_DATA: Certification[] = [
     link: '#',
     verificationId: 'PENDING_ISSUANCE',
     tags: ['Generative AI', 'LLMs', 'Prompt Engineering', 'AI Orchestration', 'NodeJS/Python'],
-    // No official verify link or self-hosted certificate exists yet — this
-    // is a genuinely unverified/self-reported credential, not a proven one.
-    // It stays on the site because omitting it entirely is less honest than
-    // labeling it accurately: shown with its own distinct card treatment
-    // (Certifications.tsx) instead of blending into the verified grid.
-    unverifiedNote: 'Specialization coursework completed on Coursera. The official certificate is pending issuance — self-reported here until that verification link exists.'
+    // Coursework is complete, but Coursera locks the shareable /share/
+    // verify link behind a separate paid certificate purchase even after
+    // finishing the specialization — same paywall pattern as the .NET
+    // credential above, just without a self-hosted certificateFile yet.
+    // Shown at equal weight to the other cards (Certifications.tsx), with
+    // this note standing in for a verify button rather than a fabricated
+    // link/hash.
+    unverifiedNote: 'Coursework completed on Coursera. Official certificate pending issuance.'
   }
 ];
