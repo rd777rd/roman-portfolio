@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Terminal, Sparkles } from 'lucide-react';
+import { Menu, X, Terminal, Sparkles, Download } from 'lucide-react';
 import { PERSONAL_INFO } from '../data';
 
 interface NavbarProps {
@@ -78,6 +78,15 @@ export default function Navbar({ onOpenResume, onOpenHireMe }: NavbarProps) {
             >
               [View Resume]
             </button>
+            <a
+              href="/resume.pdf"
+              download="Roman-Drake-Resume.pdf"
+              aria-label="Download Resume PDF"
+              title="Download Resume PDF"
+              className="p-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-emerald-400 border border-zinc-800 rounded-full transition-all"
+            >
+              <Download size={16} />
+            </a>
             <button
               onClick={onOpenHireMe}
               className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-semibold text-zinc-100 rounded-full group bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 group-hover:from-blue-500 group-hover:to-purple-500 hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-800 cursor-pointer"
@@ -127,6 +136,14 @@ export default function Navbar({ onOpenResume, onOpenHireMe }: NavbarProps) {
           >
             [*] View Resume PDF
           </button>
+          <a
+            href="/resume.pdf"
+            download="Roman-Drake-Resume.pdf"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2 px-3 py-3 rounded-lg text-base font-medium text-emerald-400 hover:text-emerald-300 hover:bg-zinc-900/50 transition-all duration-200 font-mono"
+          >
+            <Download size={16} /> Download Resume PDF
+          </a>
           <div className="px-3 pt-3">
             <button
               onClick={() => {
