@@ -33,4 +33,9 @@ export interface Certification {
    *  itself is fully completed). This keeps proof on the site under our
    *  own control instead of depending on the issuer ever unlocking it. */
   certificateFile?: string;
+  /** Short, honest explanation shown on an unverified credential's card —
+   *  i.e. one with neither `link` nor `certificateFile` set. Displayed
+   *  instead of a verify button; keep it factual (what's actually true
+   *  right now), never worded to imply verification that hasn't happened. */
+  unverifiedNote?: string;
 }

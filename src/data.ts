@@ -146,6 +146,12 @@ export const CERTIFICATIONS_DATA: Certification[] = [
     issuer: 'Coursera',
     link: '#',
     verificationId: 'PENDING_ISSUANCE',
-    tags: ['Generative AI', 'LLMs', 'Prompt Engineering', 'AI Orchestration', 'NodeJS/Python']
+    tags: ['Generative AI', 'LLMs', 'Prompt Engineering', 'AI Orchestration', 'NodeJS/Python'],
+    // No official verify link or self-hosted certificate exists yet — this
+    // is a genuinely unverified/self-reported credential, not a proven one.
+    // It stays on the site because omitting it entirely is less honest than
+    // labeling it accurately: shown with its own distinct card treatment
+    // (Certifications.tsx) instead of blending into the verified grid.
+    unverifiedNote: 'Specialization coursework completed on Coursera. The official certificate is pending issuance — self-reported here until that verification link exists.'
   }
 ];

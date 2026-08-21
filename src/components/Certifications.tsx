@@ -2,6 +2,9 @@ import React from 'react';
 import { Award, CheckCircle, ExternalLink, FileText, Hourglass } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../data';
 
+const DEFAULT_UNVERIFIED_NOTE =
+  "No official verification link or certificate exists yet for this one — listed here as self-reported, not institution-verified.";
+
 export default function Certifications() {
   // A credential counts as "proven" if it has either an official issuer
   // verification link OR a self-hosted certificate file — some issuers
@@ -9,10 +12,11 @@ export default function Certifications() {
   // separate certificate purchase even after the coursework is fully
   // completed, so an uploaded certificate is treated as equally valid proof
   // rather than as a lesser, "pending" state. Anything with neither is
-  // genuinely still in progress and gets a small footnote instead of equal
-  // grid weight next to proven credentials.
+  // genuinely unverified — still shown as a real card (not omitted, and not
+  // quietly blended into the verified grid), just visually and textually
+  // honest about not being institution-proven yet.
   const provenCerts = CERTIFICATIONS_DATA.filter((c) => c.link !== '#' || c.certificateFile);
-  const pendingCerts = CERTIFICATIONS_DATA.filter((c) => c.link === '#' && !c.certificateFile);
+  const unverifiedCerts = CERTIFICATIONS_DATA.filter((c) => c.link === '#' && !c.certificateFile);
 
   return (
     <section id="certifications" className="py-24 relative bg-zinc-950 border-t border-zinc-900">
@@ -35,7 +39,7 @@ export default function Certifications() {
           </div>
 
           <div className="self-start md:self-auto flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg">
-            <CheckCircle size={13} /> All verified credentials active
+            <CheckCircle size={13} /> {provenCerts.length} verified credential{provenCerts.length === 1 ? '' : 's'}
           </div>
         </div>
 
@@ -118,15 +122,64 @@ export default function Certifications() {
           ))}
         </div>
 
-        {/* In-progress credentials — deliberately a small footnote, not an
-            equal-weight grid card, so an incomplete credential doesn't read
-            as an unfinished one. */}
-        {pendingCerts.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-500">
-            <Hourglass size={13} className="text-zinc-600 flex-shrink-0" />
-            <span>
-              In progress: {pendingCerts.map((c) => c.name).join(', ')} — pending issuance.
-            </span>
+        {/* Unverified / self-reported credentials — real cards, not a
+            footnote, but deliberately styled distinctly (dashed border,
+            zinc instead of amber, no Award badge, no verify button) so
+            nobody skimming the section could mistake one for a proven
+            credential. Omitting these entirely would be less honest than
+            labeling them accurately. */}
+        {unverifiedCerts.length > 0 && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 font-mono text-xs text-zinc-500 uppercase tracking-widest">
+              <Hourglass size={13} className="text-zinc-600" />
+              Currently Pursuing — Unverified
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {unverifiedCerts.map((cert) => (
+                <div
+                  key={cert.name}
+                  className="p-6 bg-zinc-900/10 border border-dashed border-zinc-700 rounded-2xl flex flex-col justify-between relative overflow-hidden"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">
+                          ISSUER: {cert.issuer}
+                        </span>
+                        <h3 className="font-heading font-black text-lg text-zinc-300">
+                          {cert.name}
+                        </h3>
+                      </div>
+
+                      <div className="p-3 bg-zinc-900/40 rounded-xl border border-zinc-700 text-zinc-500 flex items-center justify-center flex-shrink-0">
+                        <Hourglass size={20} />
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {cert.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 text-[9px] font-mono text-zinc-500 bg-zinc-950 border border-zinc-800 rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-5 mt-5 border-t border-zinc-800/80 space-y-2">
+                    <span className="inline-block px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest text-zinc-400 bg-zinc-800/60 border border-zinc-700 rounded">
+                      Unverified — self-reported
+                    </span>
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      {cert.unverifiedNote || DEFAULT_UNVERIFIED_NOTE}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
