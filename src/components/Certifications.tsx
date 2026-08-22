@@ -1,9 +1,9 @@
 import React from 'react';
-import { Award, CheckCircle, ExternalLink, FileText, Clock } from 'lucide-react';
+import { Award, CheckCircle, ExternalLink, FileText, BadgeCheck } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../data';
 
-const DEFAULT_PENDING_NOTE =
-  'Coursework completed. Official certificate pending issuance from the issuer.';
+const DEFAULT_COMPLETION_NOTE =
+  'Coursework completed in full. The issuer has not released a verification document for this credential.';
 
 export default function Certifications() {
   return (
@@ -79,14 +79,14 @@ export default function Certifications() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-5 mt-5 border-t border-zinc-900/80">
                 <div className="font-mono text-[10px] text-zinc-400 space-y-0.5">
                   <span className="block uppercase text-zinc-400">
-                    {cert.link !== '#' ? 'Credential Hash' : cert.certificateFile ? 'Verification' : 'Status'}
+                    {cert.link !== '#' ? 'Credential Hash' : cert.certificateFile ? 'Verification' : 'Completion'}
                   </span>
                   <span className="text-zinc-400">
                     {cert.link !== '#'
                       ? cert.verificationId || 'SYSTEM_INTERNAL'
                       : cert.certificateFile
                         ? 'Self-hosted certificate'
-                        : cert.unverifiedNote || DEFAULT_PENDING_NOTE}
+                        : cert.completionNote || DEFAULT_COMPLETION_NOTE}
                   </span>
                 </div>
 
@@ -116,11 +116,13 @@ export default function Certifications() {
                   </a>
                 ) : (
                   // Neither an issuer verify link nor a self-hosted
-                  // certificate exists for this one yet — no button (there's
-                  // nowhere honest for it to go), just a plain status
-                  // indicator matching the rest of the card's tone.
-                  <span className="px-4 py-2 bg-zinc-950 text-zinc-500 font-mono text-xs border border-zinc-800 rounded-lg flex items-center justify-center gap-1.5">
-                    <Clock size={12} /> Certificate Pending
+                  // certificate exists for this one — but the coursework
+                  // itself is 100% complete, so the chip reads as
+                  // "completed" (not "pending"/"in progress"). There's no
+                  // honest link to send anyone to, so no button — just a
+                  // status indicator that doesn't undersell finished work.
+                  <span className="px-4 py-2 bg-zinc-950 text-zinc-300 font-mono text-xs border border-zinc-800 rounded-lg flex items-center justify-center gap-1.5">
+                    <BadgeCheck size={12} className="text-amber-400" /> Coursework Completed
                   </span>
                 )}
               </div>

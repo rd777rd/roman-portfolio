@@ -33,9 +33,13 @@ export interface Certification {
    *  itself is fully completed). This keeps proof on the site under our
    *  own control instead of depending on the issuer ever unlocking it. */
   certificateFile?: string;
-  /** Short, honest explanation shown on an unverified credential's card —
-   *  i.e. one with neither `link` nor `certificateFile` set. Displayed
-   *  instead of a verify button; keep it factual (what's actually true
-   *  right now), never worded to imply verification that hasn't happened. */
-  unverifiedNote?: string;
+  /** Short, honest explanation shown on a credential's card when it has
+   *  neither `link` nor `certificateFile` set — i.e. coursework is fully
+   *  completed but the issuer hasn't released a verifiable document (e.g.
+   *  a paywalled certificate purchase not disclosed at enrollment).
+   *  Displayed instead of a verify button. Keep it factual: the *skill*
+   *  and *completion* are real and should read that way — never worded to
+   *  imply the credential itself is unfinished, pending, or in-progress
+   *  when the coursework is actually done. */
+  completionNote?: string;
 }

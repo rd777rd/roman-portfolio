@@ -128,7 +128,7 @@ export const CERTIFICATIONS_DATA: Certification[] = [
     tags: ['Python', 'Django', 'SQL', 'Databases', 'APIs']
   },
   {
-    name: '.NET Fullstack Developer Academy',
+    name: '.NET Fullstack Developer',
     issuer: 'Coursera',
     link: 'https://coursera.org/share/916082914fadc2c0eecd876cf1d1d380',
     verificationId: '916082914fadc2c0eecd876cf1d1d380',
@@ -147,13 +147,16 @@ export const CERTIFICATIONS_DATA: Certification[] = [
     link: '#',
     verificationId: 'PENDING_ISSUANCE',
     tags: ['Generative AI', 'LLMs', 'Prompt Engineering', 'AI Orchestration', 'NodeJS/Python'],
-    // Coursework is complete, but Coursera locks the shareable /share/
-    // verify link behind a separate paid certificate purchase even after
-    // finishing the specialization — same paywall pattern as the .NET
-    // credential above, just without a self-hosted certificateFile yet.
-    // Shown at equal weight to the other cards (Certifications.tsx), with
-    // this note standing in for a verify button rather than a fabricated
-    // link/hash.
-    unverifiedNote: 'Coursework completed on Coursera. Official certificate pending issuance.'
+    // Specialization is 100% complete — every course, quiz, and graded
+    // assignment finished. Coursera does not disclose, anywhere during
+    // enrollment or coursework, that the shareable /share/ verification
+    // link requires a *separate* certificate purchase after finishing —
+    // same paywall pattern as the .NET credential above, just without a
+    // self-hosted certificateFile (that one was purchased; this one is a
+    // deliberate choice not to pay twice for coursework already paid for
+    // and completed). Shown at equal weight to the other cards
+    // (Certifications.tsx) — completed is completed, whether or not the
+    // issuer chooses to release a PDF for it.
+    completionNote: 'Specialization coursework 100% completed on Coursera. The issuer requires a separate paid purchase to release the certificate PDF, undisclosed at enrollment — skills demonstrated through this portfolio\'s live projects instead.'
   }
 ];

@@ -100,7 +100,7 @@ export const RESUME_DATA = {
 
   credentials: [
     'Generative AI Software Engineering (July 2026)',
-    '.NET Full-Stack Developer Academy (Jan 2025)',
+    '.NET Fullstack Developer (Jan 2025)',
     'Google UX Design Specialization (Jan 2025)',
     'Meta Back-End Developer Certification (Nov 2024)',
     'Meta Front-End Developer Certification (June 2024)',
