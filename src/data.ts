@@ -19,7 +19,12 @@ export const PROJECTS_DATA: Project[] = [
     technologies: ['Django', 'SQLite', 'JavaScript', 'Render'],
     link: 'https://invoiceapp-9s29.onrender.com/',
     github: 'https://github.com/rd777rd/invoiceapp.git',
-    category: 'Fullstack'
+    category: 'Fullstack',
+    caseStudy: {
+      problem: 'The client was itemizing project costs and building invoices by hand — no repeatable system, and line-item math that had to be re-checked every time.',
+      approach: 'Built an auth-gated Django admin flow where materials, labor, and custom line items are entered once and totals are computed server-side, not in the browser, so the invoice total is never out of sync with its line items.',
+      result: 'A working sandbox login is live on the demo (see below) — anyone reviewing this can actually run the real admin flow, not just look at a screenshot of it.'
+    }
   },
   {
     id: 'smallscapes',
@@ -29,7 +34,12 @@ export const PROJECTS_DATA: Project[] = [
     technologies: ['Django', 'SQLite', 'Render'],
     link: 'https://smallscapes.onrender.com',
     github: 'https://github.com/rd777rd/smallscapes.git',
-    category: 'Fullstack'
+    category: 'Fullstack',
+    caseStudy: {
+      problem: 'A small, locally owned hardscaping company had no web presence at all — every estimate request depended on word of mouth or a competitor\'s site showing up first in search.',
+      approach: 'Built a fast-loading Django site with a real completed-project gallery (patios, retaining walls, garden pathways) and a direct call/email estimate path, deployed on free-tier hosting so the client carries zero ongoing hosting cost.',
+      result: 'The client now has a searchable, shareable production site with a clear estimate-request CTA instead of no presence at all.'
+    }
   },
   {
     id: 'ai-orchestrator',
@@ -40,7 +50,12 @@ export const PROJECTS_DATA: Project[] = [
     link: 'https://llm-prompt-orchestrator.netlify.app/',
     github: 'https://github.com/rd777rd/llm-prompt-orchestrator.git',
     category: 'Fullstack',
-    inDevelopment: false
+    inDevelopment: false,
+    caseStudy: {
+      problem: 'Calling an LLM API in a script is a 10-line problem; wiring that call correctly into a real Django app\'s request/response cycle — and knowing what fails silently if you get it wrong — is the part most tutorials skip.',
+      approach: 'Built a visual studio for designing prompts with Jinja2-style variables, testing them live against Gemini/Claude in a sandbox, and exporting production-ready code for four real integration patterns: a synchronous view, a post-save signal, a Celery background task, and a RAG-style query router.',
+      result: 'Exports copy-pasteable, pattern-correct Django integration code — the reference I wish existed when I first started wiring LLM calls into a Django backend.'
+    }
   },
   {
     id: 'sql-analyzer',
@@ -51,7 +66,12 @@ export const PROJECTS_DATA: Project[] = [
     link: 'https://schema-analyzer-tool.netlify.app/',
     github: 'https://github.com/rd777rd/sq-plan-analyzer.git',
     category: 'Fullstack',
-    inDevelopment: false
+    inDevelopment: false,
+    caseStudy: {
+      problem: 'Understanding an unfamiliar schema by tracing raw CREATE TABLE statements by hand is slow, and diagnosing "why is this query slow" usually takes years of DBA intuition most developers haven\'t built yet.',
+      approach: 'Paste raw SQL DDL or a Django models.py file and the tool renders an ERD automatically; from there, run a query against that schema and get a plain-English read on whether it\'s doing a full table scan and what index would fix it.',
+      result: 'Turns query-plan literacy into something buildable in minutes instead of years, backed by real EXPLAIN-style analysis rather than a guess.'
+    }
   },
   {
     id: 'romsites',
@@ -62,7 +82,12 @@ export const PROJECTS_DATA: Project[] = [
     link: 'https://romsites.onrender.com',
     // No github field — this repo is private. See ProjectCard.tsx: a
     // missing github link renders a lock icon instead of a dead 404 link.
-    category: 'Agency'
+    category: 'Agency',
+    caseStudy: {
+      problem: 'An agency/freelance site that only shows screenshots or mockups can\'t actually prove the work runs in production.',
+      approach: 'Built the studio\'s own site to link directly to real, live client deployments — SmallScapes and the Invoice App — instead of static images, so a prospective client can click through and use the actual product.',
+      result: 'Every case study on the site is independently verifiable by visiting the live link — nothing shown is staged.'
+    }
   },
   {
     id: 'lucid',
@@ -71,7 +96,12 @@ export const PROJECTS_DATA: Project[] = [
     longDescription: `Lucid turns whatever you are trying to learn — an article, a textbook chapter, lecture notes — into a study deck in about ten seconds. Paste up to ~20k characters of source text, and it pulls out a summary, the key concepts you actually need to know, and roughly a dozen flashcards built around "why" and "how" questions instead of straight recall. There is a no-login live demo that keeps everything local to your browser, and a full account version where decks get saved permanently to your library. I built this with Lovable, using it as a chance to work hands-on with an AI app builder and Google's Gemini model via the Lovable AI Gateway, rather than wiring up my own model API from scratch.`,
     technologies: ['Lovable', 'Google Gemini'],
     link: 'https://study-lab-assistant.lovable.app/',
-    category: 'Fullstack'
+    category: 'Fullstack',
+    caseStudy: {
+      problem: 'Turning raw study material — an article, a chapter, lecture notes — into an effective study session usually means manually writing your own summary and flashcards, which is real but tedious work.',
+      approach: 'Piped up to ~20k characters of source text through a single flow (Gemini via the Lovable AI Gateway) that returns a summary, key concepts, and a ~12-card flashcard deck in about ten seconds, with a no-login local-only mode alongside a full saved-library account version.',
+      result: 'A working end-to-end AI product, deliberately built on a managed AI app builder rather than a from-scratch API integration — to show range across both ends of shipping software.'
+    }
   },
   {
     id: 'shiftfloor',

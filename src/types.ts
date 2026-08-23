@@ -9,6 +9,20 @@ export interface Project {
   category: 'Fullstack' | 'Frontend' | 'Agency';
   /** When true, the project is not yet live — UI shows an "In Development" badge instead of a dead Launch link. */
   inDevelopment?: boolean;
+  /** Optional scannable Problem → Approach → Result breakdown, shown inside
+   *  the card's "Deep Inspect" expansion alongside `longDescription`. Exists
+   *  so a hiring manager skimming a project in ~10 seconds gets a concrete
+   *  read on what the real engineering problem was and how it was actually
+   *  solved, not just prose describing what the app does. Keep every claim
+   *  factual and specific to what's true of the real build — no invented
+   *  metrics (% faster, $ saved, user counts) that can't be backed up.
+   *  Shift Floor intentionally omits this — it already gets its own full
+   *  EngineeringDeepDive section further down the page. */
+  caseStudy?: {
+    problem: string;
+    approach: string;
+    result: string;
+  };
 }
 
 export interface Skill {

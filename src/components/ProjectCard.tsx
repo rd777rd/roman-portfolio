@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, Lock, ShieldAlert, Layers, Loader2, GitCommitHorizontal } from 'lucide-react';
+import { ExternalLink, Github, Lock, ShieldAlert, Layers, Loader2, GitCommitHorizontal, Target, Wrench, CheckCircle2 } from 'lucide-react';
 import { Project } from '../types';
 import { useDemoWarmup } from '../hooks/useDemoWarmup';
 import { useRepoStats } from '../hooks/useRepoStats';
@@ -96,6 +96,23 @@ export default function ProjectCard({ project, index, isExpanded, onToggle }: Pr
                 <Layers size={13} className="text-blue-500 flex-shrink-0 mt-0.5" />
                 <span>{project.longDescription}</span>
               </div>
+
+              {project.caseStudy && (
+                <div className="grid gap-2 pt-2 mt-1 border-t border-zinc-800/40">
+                  <div className="flex items-start gap-1.5">
+                    <Target size={13} className="text-rose-500 flex-shrink-0 mt-0.5" />
+                    <span><strong className="text-zinc-300 font-semibold">Problem:</strong> {project.caseStudy.problem}</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <Wrench size={13} className="text-indigo-500 flex-shrink-0 mt-0.5" />
+                    <span><strong className="text-zinc-300 font-semibold">Approach:</strong> {project.caseStudy.approach}</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <CheckCircle2 size={13} className="text-emerald-500 flex-shrink-0 mt-0.5" />
+                    <span><strong className="text-zinc-300 font-semibold">Result:</strong> {project.caseStudy.result}</span>
+                  </div>
+                </div>
+              )}
 
               {repoStats.status === 'ready' && repoStats.data && (
                 <div
