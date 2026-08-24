@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
 
 # Vite fingerprints everything under /assets with a content hash, so a given
 # filename's contents never change — safe to cache for a year and skip

@@ -25,16 +25,32 @@ export default function ProjectCard({ project, index, isExpanded, onToggle }: Pr
     return () => clearTimeout(t);
   }, [showColdNotice]);
 
+  const [showDownNotice, setShowDownNotice] = useState(false);
+
+  useEffect(() => {
+    if (!showDownNotice) return;
+    const t = setTimeout(() => setShowDownNotice(false), 6000);
+    return () => clearTimeout(t);
+  }, [showDownNotice]);
+
   const handleLaunchClick = () => {
     // Never block or delay the actual navigation — the <a> tag's default
     // behavior fires regardless. This just sets expectations when the demo
-    // is a Render free-tier instance that hasn't confirmed it's awake yet.
+    // is a Render free-tier instance that hasn't confirmed it's awake yet,
+    // or is confirmed to be actively erroring out.
     if (demoStatus === 'checking' || demoStatus === 'cold') {
       setShowColdNotice(true);
+    } else if (demoStatus === 'down') {
+      setShowDownNotice(true);
     }
   };
 
   const showBadge = demoStatus !== 'warm' || project.link.includes('onrender.com');
+  // A confirmed real server error is a stronger signal than "warm" ever
+  // was — flip the Launch button itself to a warning color so it doesn't
+  // read as a normal, confident primary CTA into a page that's currently
+  // broken.
+  const launchIsDown = demoStatus === 'down';
 
   return (
     <motion.div
@@ -181,6 +197,24 @@ export default function ProjectCard({ project, index, isExpanded, onToggle }: Pr
             )}
           </AnimatePresence>
 
+          {/* Down-notice toast — the demo confirmed a real server error, not
+              just a cold start. Launch still opens it (it may have already
+              recovered, or the visitor may want to see the error state
+              themselves) but sets honest expectations first. */}
+          <AnimatePresence>
+            {showDownNotice && (
+              <motion.div
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 4 }}
+                role="status"
+                className="absolute bottom-full right-0 mb-2 w-56 p-2.5 rounded-lg border border-red-500/20 bg-zinc-950 text-[11px] font-mono text-red-300/90 leading-tight shadow-lg z-10"
+              >
+                This demo is erroring out server-side right now — opening anyway, but expect it to be broken.
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {showBadge && (
             <DemoStatusBadge status={demoStatus} />
           )}
@@ -222,8 +256,14 @@ export default function ProjectCard({ project, index, isExpanded, onToggle }: Pr
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleLaunchClick}
-              className="flex items-center gap-1.5 px-3 py-2 text-xs font-mono text-zinc-100 bg-blue-600 hover:bg-blue-500 transition-colors rounded-lg font-semibold"
-              aria-label={`Visit live deployment of ${project.title}`}
+              className={`flex items-center gap-1.5 px-3 py-2 text-xs font-mono text-zinc-100 transition-colors rounded-lg font-semibold ${
+                launchIsDown ? 'bg-red-600 hover:bg-red-500' : 'bg-blue-600 hover:bg-blue-500'
+              }`}
+              aria-label={
+                launchIsDown
+                  ? `Visit live deployment of ${project.title} (currently erroring)`
+                  : `Visit live deployment of ${project.title}`
+              }
             >
               Launch <ExternalLink size={13} />
             </a>
@@ -267,6 +307,18 @@ function DemoStatusBadge({ status }: { status: import('../hooks/useDemoWarmup').
       >
         <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
         Waking demo
+      </span>
+    );
+  }
+
+  if (status === 'down') {
+    return (
+      <span
+        className="flex items-center gap-1 text-[10px] font-mono text-red-400/90 select-none"
+        title="Server responded with an error — this is a real outage, not just a cold start"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+        Demo down
       </span>
     );
   }

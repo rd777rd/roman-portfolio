@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, RefObject } from 'react';
 
-export type DemoStatus = 'unknown' | 'checking' | 'warm' | 'cold';
+export type DemoStatus = 'unknown' | 'checking' | 'warm' | 'cold' | 'down';
 
-const WARM_TIMEOUT_MS = 4000;
+const CHECK_TIMEOUT_MS = 10000;
 
 // Per-tab-session cache so scrolling past a project card twice (or revisiting
 // the Projects section) doesn't re-fire a warm-up ping that's already resolved.
@@ -20,9 +20,13 @@ function isColdStartRisk(url: string): boolean {
 }
 
 /**
- * Silently pre-warms a Render free-tier demo the moment its project card
- * scrolls into view, and reports whether it answered fast enough to be
- * "warm" by the time a visitor is likely to click Launch.
+ * Silently checks a Render free-tier demo's real health the moment its
+ * project card scrolls into view, via a same-origin serverless function
+ * (see netlify/functions/demo-health.js) that can read the demo's actual
+ * HTTP status — something a direct client-side fetch cannot do for a
+ * cross-origin, non-CORS-enabled target (a `no-cors` fetch reports "it
+ * responded" identically for a 200 and a 500, which used to make a demo
+ * that's actively erroring out show as falsely "Live").
  *
  * This never blocks or disables the Launch link — it only ever adds
  * information on top of the existing behavior. If the check errors, is
@@ -39,8 +43,8 @@ export function useDemoWarmup(url: string, elementRef: RefObject<Element>): Demo
   useEffect(() => {
     if (!coldStartRisk) return;
     const cached = sessionCache.get(url);
-    if (cached === 'warm') {
-      setStatus('warm');
+    if (cached === 'warm' || cached === 'down') {
+      setStatus(cached);
       return;
     }
 
@@ -51,7 +55,7 @@ export function useDemoWarmup(url: string, elementRef: RefObject<Element>): Demo
       (entries) => {
         if (entries[0]?.isIntersecting && !triggered.current) {
           triggered.current = true;
-          warmUp(url, setStatus);
+          checkHealth(url, setStatus);
           observer.disconnect();
         }
       },
@@ -66,25 +70,32 @@ export function useDemoWarmup(url: string, elementRef: RefObject<Element>): Demo
   return status;
 }
 
-function warmUp(url: string, setStatus: (s: DemoStatus) => void) {
+function checkHealth(url: string, setStatus: (s: DemoStatus) => void) {
   setStatus('checking');
   sessionCache.set(url, 'checking');
 
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), WARM_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), CHECK_TIMEOUT_MS);
 
-  fetch(url, { mode: 'no-cors', cache: 'no-store', signal: controller.signal })
-    .then(() => {
+  fetch(`/.netlify/functions/demo-health?url=${encodeURIComponent(url)}`, {
+    cache: 'no-store',
+    signal: controller.signal,
+  })
+    .then((r) => r.json())
+    .then((data: { ok: boolean; status: number; unreachable?: boolean }) => {
       clearTimeout(timer);
-      sessionCache.set(url, 'warm');
-      setStatus('warm');
+      // A real response with a 5xx status means the app itself is broken —
+      // distinct from "still spinning up", which never gets far enough to
+      // return a status at all (unreachable/timeout instead).
+      const next: DemoStatus =
+        data.ok ? 'warm' : data.unreachable ? 'cold' : 'down';
+      sessionCache.set(url, next);
+      setStatus(next);
     })
     .catch(() => {
-      // Timed out, aborted, or genuinely unreachable. We deliberately don't
-      // distinguish "still spinning up" from "actually broken" here — the
-      // Launch link stays fully clickable either way, so the only cost of
-      // treating both as "cold" is a slightly-too-cautious badge, never a
-      // false claim that something is live when it isn't.
+      // The health-check function itself is unreachable (not deployed yet,
+      // cold-starting, network hiccup for the visitor). Fail closed to the
+      // pre-existing "cold" treatment rather than claiming anything false.
       clearTimeout(timer);
       sessionCache.set(url, 'cold');
       setStatus('cold');

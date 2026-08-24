@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'motion/react';
 import {
   Microscope,
@@ -11,7 +11,11 @@ import {
   Search,
   Terminal,
   CheckCircle2,
+  AlertOctagon,
 } from 'lucide-react';
+import { useDemoWarmup } from '../hooks/useDemoWarmup';
+
+const SHIFTFLOOR_URL = 'https://shiftfloor.onrender.com';
 
 // Real code, trimmed from the actual production view — not an illustrative
 // stand-in. Source: matching_app/views.py, claim_shift(), in the live
@@ -43,8 +47,15 @@ const TONE_COLOR: Record<string, string> = {
 };
 
 export default function EngineeringDeepDive() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const demoStatus = useDemoWarmup(SHIFTFLOOR_URL, sectionRef);
+
   return (
-    <section id="deepdive" className="py-24 relative bg-zinc-950/30 border-t border-zinc-900 overflow-hidden">
+    <section
+      id="deepdive"
+      ref={sectionRef}
+      className="py-24 relative bg-zinc-950/30 border-t border-zinc-900 overflow-hidden"
+    >
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
@@ -134,10 +145,14 @@ export default function EngineeringDeepDive() {
 
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
-                href="https://shiftfloor.onrender.com"
+                href={SHIFTFLOOR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-zinc-100 font-semibold rounded-xl text-xs font-mono transition-all flex items-center gap-2"
+                className={`px-5 py-3 text-zinc-100 font-semibold rounded-xl text-xs font-mono transition-all flex items-center gap-2 ${
+                  demoStatus === 'down'
+                    ? 'bg-red-600 hover:bg-red-500'
+                    : 'bg-blue-600 hover:bg-blue-500'
+                }`}
               >
                 View Live Demo <ExternalLink size={13} />
               </a>
@@ -150,9 +165,31 @@ export default function EngineeringDeepDive() {
                 <Github size={14} /> View Source
               </a>
             </div>
-            <p className="text-[11px] font-mono text-zinc-600">
-              Free-tier hosting spins down when idle — first load can take up to ~30s to wake up.
-            </p>
+
+            {/* Honest live-status line. This is this portfolio's single most
+                important proof point, so it gets the most direct treatment
+                of any demo on the site: a real server error is called out
+                by name instead of silently showing a "Live" badge that a
+                no-cors ping can't actually distinguish from a 500 (see
+                useDemoWarmup.ts). Turning a real outage into a visible,
+                honest status line is itself part of the engineering-rigor
+                pitch this section is making. */}
+            {demoStatus === 'down' ? (
+              <div
+                role="status"
+                className="flex items-start gap-2 p-3 bg-red-500/5 border border-red-500/20 rounded-xl text-[11px] font-mono text-red-300/90 leading-relaxed"
+              >
+                <AlertOctagon size={14} className="flex-shrink-0 mt-0.5" />
+                <span>
+                  Live demo is erroring out on the host side right now — the code and test suite
+                  above are real either way. Try again shortly, or head straight to the source.
+                </span>
+              </div>
+            ) : (
+              <p className="text-[11px] font-mono text-zinc-600">
+                Free-tier hosting spins down when idle — first load can take up to ~30s to wake up.
+              </p>
+            )}
           </div>
 
           {/* Code + Proof (Right) */}
