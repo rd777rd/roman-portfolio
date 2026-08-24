@@ -29,7 +29,7 @@ const ALLOWED_HOSTS = new Set([
 
 const TIMEOUT_MS = 9000;
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   const target = event.queryStringParameters && event.queryStringParameters.url;
 
   let parsed;
